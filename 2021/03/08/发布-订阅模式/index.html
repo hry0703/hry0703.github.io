@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>发布-订阅模式 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="发布&#x2F;订阅模式(Publish&#x2F;Subscribe Pattern)1. 什么是发布订阅模式   发布-订阅模式里面包含了三个模块，发布者，订阅者和调度中心。订阅者把自己想订阅的事件注册到调度中心，当发布者发布该事件）到调度中心，也就是该事件触发时，由调度中心统一调度订阅者注册到调度中心的处理代码。  2. 发布订阅模式与观察者模式的区别   观察者模式和发布订阅模式最大的区别就是发布订阅模式有个">
+  <meta name="description" content="发布&#x2F;订阅模式(Publish&#x2F;Subscribe Pattern)1. 什么是发布订阅模式   发布-订阅模式里面包含了三个模块，发布者，订阅者和调度中心。订阅者把自己想订阅的事件注册到调度中心，当发布者发布该事件）到调度中心，也就是该事件触发时，由调度中心统一调度订阅者注册到调度中心的处理代码。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="发布-订阅模式">
 <meta property="og:url" content="http://example.com/2021/03/08/%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="发布&#x2F;订阅模式(Publish&#x2F;Subscribe Pattern)1. 什么是发布订阅模式   发布-订阅模式里面包含了三个模块，发布者，订阅者和调度中心。订阅者把自己想订阅的事件注册到调度中心，当发布者发布该事件）到调度中心，也就是该事件触发时，由调度中心统一调度订阅者注册到调度中心的处理代码。  2. 发布订阅模式与观察者模式的区别   观察者模式和发布订阅模式最大的区别就是发布订阅模式有个">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/03/08/%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/publish-subscribe.png">
+<meta property="og:description" content="发布&#x2F;订阅模式(Publish&#x2F;Subscribe Pattern)1. 什么是发布订阅模式   发布-订阅模式里面包含了三个模块，发布者，订阅者和调度中心。订阅者把自己想订阅的事件注册到调度中心，当发布者发布该事件）到调度中心，也就是该事件触发时，由调度中心统一调度订阅者注册到调度中心的处理代码。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/publish-subscribe.png">
 <meta property="article:published_time" content="2021-03-08T07:07:21.000Z">
-<meta property="article:modified_time" content="2021-08-08T07:59:54.146Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2021-08-08T09:25:45.822Z">
+<meta property="article:author" content="HRY">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/03/08/%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/publish-subscribe.png">
+<meta name="twitter:image" content="http://example.com/images/publish-subscribe.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -50,7 +50,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/images/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -62,7 +62,11 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/">随笔</a></li>
+				<li><a href="/archives/index.html">归档</a></li>
+	        
+				<li><a href="/categories/index.html">分类</a></li>
+	        
+				<li><a href="/tags/index.html">标签</a></li>
 	        
 			</ul>
 		</nav>
@@ -73,25 +77,13 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-    			
             
-    			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -108,7 +100,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/images/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
@@ -120,29 +112,29 @@
 			
 				
 			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/">随笔</a></li>
+					<li style="width: 25%"><a href="/archives/index.html">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/index.html">分类</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/index.html">标签</a></li>
 		        
 				</ul>
 			</nav>
@@ -178,7 +170,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="发布-订阅模式-Publish-Subscribe-Pattern"><a href="#发布-订阅模式-Publish-Subscribe-Pattern" class="headerlink" title="发布/订阅模式(Publish/Subscribe Pattern)"></a>发布/订阅模式(Publish/Subscribe Pattern)</h2><h3 id="1-什么是发布订阅模式"><a href="#1-什么是发布订阅模式" class="headerlink" title="1. 什么是发布订阅模式"></a><strong>1. 什么是发布订阅模式</strong></h3><p>   发布-订阅模式里面包含了三个模块，发布者，订阅者和调度中心。订阅者把自己想订阅的事件注册到调度中心，当发布者发布该事件）到调度中心，也就是该事件触发时，由调度中心统一调度订阅者注册到调度中心的处理代码。</p>
-<p><img src="./publish-subscribe.png" alt="发布/订阅模式"></p>
+<p><img src="/images/publish-subscribe.png" alt="发布/订阅模式"></p>
+<span id="more"></span>
+
 <h3 id="2-发布订阅模式与观察者模式的区别"><a href="#2-发布订阅模式与观察者模式的区别" class="headerlink" title="2. 发布订阅模式与观察者模式的区别"></a><strong>2. 发布订阅模式与观察者模式的区别</strong></h3><p>   观察者模式和发布订阅模式最大的区别就是发布订阅模式有个<strong>事件调度中心</strong>。观察者模式由具体目标调度，每个被订阅的目标里面都需要有对观察者的处理，发布订阅模式中统一由调度中心进行处理，订阅者和发布者互不干扰，消除了发布者和订阅者之间的依赖。这样一方面实现了解耦，还有就是可以实现更细粒度的一些控制。比如发布者发布了很多消息，但是不想所有的订阅者都接收到，就可以在调度中心做一些处理，类似于权限控制之类的。还可以做一些节流操作。</p>
 <h3 id="3-发布订阅模式应用-node中Event模块"><a href="#3-发布订阅模式应用-node中Event模块" class="headerlink" title="3. 发布订阅模式应用-node中Event模块"></a><strong>3. 发布订阅模式应用-node中Event模块</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// event.js </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">EventEmitter</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>._events = &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EventEmitter.prototype.on = <span class="function"><span class="keyword">function</span> (<span class="params">eventName, callback</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">this</span>._events) <span class="built_in">this</span>._events = &#123;&#125;</span><br><span class="line">    <span class="keyword">const</span> callbacks = <span class="built_in">this</span>._events[eventName] || [];</span><br><span class="line">    callbacks.push(callback)</span><br><span class="line">    <span class="built_in">this</span>._events[eventName] = callbacks</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EventEmitter.prototype.emit = <span class="function"><span class="keyword">function</span>(<span class="params">eventName, ...args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>._events) <span class="built_in">this</span>._events = &#123;&#125;</span><br><span class="line">    <span class="keyword">let</span> callbacks = <span class="built_in">this</span>._events[eventName];</span><br><span class="line">    callbacks &amp;&amp; callbacks.forEach(<span class="function"><span class="params">fn</span>=&gt;</span>fn(...args))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EventEmitter.prototype.off = <span class="function"><span class="keyword">function</span>(<span class="params">eventName, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>._events) <span class="built_in">this</span>._events = &#123;&#125;</span><br><span class="line">    <span class="built_in">this</span>._events[eventName] &amp;&amp; <span class="built_in">this</span>._events[eventName].filter(<span class="function"><span class="params">fn</span> =&gt;</span> fn !== callback &amp;&amp; fn.l !== callback)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EventEmitter.prototype.once = <span class="function"><span class="keyword">function</span> (<span class="params">eventName, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> one = <span class="function">(<span class="params">...args</span>)=&gt;</span>&#123;</span><br><span class="line">        callback(...args)</span><br><span class="line">        <span class="built_in">this</span>.off(eventName,one)</span><br><span class="line">    &#125;</span><br><span class="line">    one.l = callback <span class="comment">// 建立与原回调的关联</span></span><br><span class="line">    <span class="built_in">this</span>.on(eventName,one)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = EventEmitter</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体使用</span></span><br><span class="line"><span class="comment">// const EventEmitter = require(&#x27;events&#x27;);</span></span><br><span class="line"><span class="keyword">const</span> EventEmitter = <span class="built_in">require</span>(<span class="string">&#x27;./event&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> events = <span class="keyword">new</span> EventEmitter</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getUp = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name + <span class="string">&#x27;起床了&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">events.on(<span class="string">&#x27;getUp&#x27;</span>, getUp)</span><br><span class="line"></span><br><span class="line">events.emit(<span class="string">&#x27;getUp&#x27;</span>, <span class="string">&#x27;zhangsan&#x27;</span>)</span><br><span class="line">events.off(<span class="string">&#x27;getUp&#x27;</span>, getUp)</span><br><span class="line">events.emit(<span class="string">&#x27;getUp&#x27;</span>, <span class="string">&#x27;zhangsan&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
@@ -200,60 +194,20 @@
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/08/%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
@@ -321,7 +275,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 John Doe
+    		&copy; 2021 HRY
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -342,7 +296,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -362,11 +316,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
-      
-      
       
     
     
@@ -375,15 +325,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -459,45 +405,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-  	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
-  	  	
-    	</section>
     
   </div>
   
