@@ -8,7 +8,14 @@ Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [docume
 ### Create a new post
 
 ``` bash
-$ hexo new "My New Post"
+$hexo new "My New Post"
+```
+
+### Create a new draft
+
+``` bash
+$hexo new draft "new draft"
+
 ```
 
 More info: [Writing](https://hexo.io/docs/writing.html)
@@ -16,7 +23,7 @@ More info: [Writing](https://hexo.io/docs/writing.html)
 ### Run server
 
 ``` bash
-$ hexo server
+$hexo server
 ```
 
 More info: [Server](https://hexo.io/docs/server.html)
