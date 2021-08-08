@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>linux文件路径操作 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Linux 常用命令系统信息arch 显示机器的处理器架构(1)uname -m 显示机器的处理器架构(2)uname -r 显示正在使用的内核版本dmidecode -q 显示硬件系统部件 - (SMBIOS &#x2F; DMI)hdparm -i &#x2F;dev&#x2F;hda 罗列一个磁盘的架构特性hdparm -tT &#x2F;dev&#x2F;sda 在磁盘上执行测试性读取操作cat &#x2F;proc&#x2F;cpuinfo 显示CPU i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux文件路径操作">
+<meta property="og:url" content="http://example.com/2020/05/03/linux%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Linux 常用命令系统信息arch 显示机器的处理器架构(1)uname -m 显示机器的处理器架构(2)uname -r 显示正在使用的内核版本dmidecode -q 显示硬件系统部件 - (SMBIOS &#x2F; DMI)hdparm -i &#x2F;dev&#x2F;hda 罗列一个磁盘的架构特性hdparm -tT &#x2F;dev&#x2F;sda 在磁盘上执行测试性读取操作cat &#x2F;proc&#x2F;cpuinfo 显示CPU i">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-03T03:23:25.000Z">
+<meta property="article:modified_time" content="2021-08-01T22:49:46.760Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-linux文件路径操作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/03/linux%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time class="dt-published" datetime="2020-05-03T03:23:25.000Z" itemprop="datePublished">2020-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      linux文件路径操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h1><h2 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h2><p>arch 显示机器的处理器架构(1)<br>uname -m 显示机器的处理器架构(2)<br>uname -r 显示正在使用的内核版本<br>dmidecode -q 显示硬件系统部件 - (SMBIOS / DMI)<br>hdparm -i /dev/hda 罗列一个磁盘的架构特性<br>hdparm -tT /dev/sda 在磁盘上执行测试性读取操作<br>cat /proc/cpuinfo 显示CPU info的信息<br>cat /proc/interrupts 显示中断<br>cat /proc/meminfo 校验内存使用<br>cat /proc/swaps 显示哪些swap被使用<br>cat /proc/version 显示内核的版本<br>cat /proc/net/dev 显示网络适配器及统计<br>cat /proc/mounts 显示已加载的文件系统<br>lspci -tv 罗列 PCI 设备<br>lsusb -tv 显示 USB 设备<br>date 显示系统日期<br>cal 2007 显示2007年的日历表<br>date 041217002007.00 设置日期和时间 - 月日时分年.秒<br>clock -w 将时间修改保存到 BIOS </p>
+<h2 id="关机-系统的关机、重启以及登出"><a href="#关机-系统的关机、重启以及登出" class="headerlink" title="关机 (系统的关机、重启以及登出 )"></a>关机 (系统的关机、重启以及登出 )</h2><p>shutdown -h now 关闭系统(1)<br>init 0 关闭系统(2)<br>telinit 0 关闭系统(3)<br>shutdown -h hours:minutes &amp; 按预定时间关闭系统<br>shutdown -c 取消按预定时间关闭系统<br>shutdown -r now 重启(1)<br>reboot 重启(2)<br>logout 注销 </p>
+<h2 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h2><p>cd /home 进入 ‘/ home’ 目录’<br>cd .. 返回上一级目录<br>cd ../.. 返回上两级目录<br>cd 进入个人的主目录<br>cd ~user1 进入个人的主目录<br>cd - 返回上次所在的目录<br>pwd 显示工作路径<br>ls 查看目录中的文件<br>ls -F 查看目录中的文件<br>ls -l 显示文件和目录的详细资料<br>ls -a 显示隐藏文件<br>ls <em>[0-9]</em> 显示包含数字的文件名和目录名<br>tree 显示文件和目录由根目录开始的树形结构(1)<br>lstree 显示文件和目录由根目录开始的树形结构(2)<br>mkdir dir1 创建一个叫做 ‘dir1’ 的目录’<br>mkdir dir1 dir2 同时创建两个目录<br>mkdir -p /tmp/dir1/dir2 创建一个目录树<br>rm -f file1 删除一个叫做 ‘file1’ 的文件’<br>rmdir dir1 删除一个叫做 ‘dir1’ 的目录’<br>rm -rf dir1 删除一个叫做 ‘dir1’ 的目录并同时删除其内容<br>rm -rf dir1 dir2 同时删除两个目录及它们的内容<br>mv dir1 new_dir 重命名/移动 一个目录<br>cp file1 file2 复制一个文件<br>cp dir/* . 复制一个目录下的所有文件到当前工作目录<br>cp -a /tmp/dir1 . 复制一个目录到当前工作目录<br>cp -a dir1 dir2 复制一个目录<br>ln -s file1 lnk1 创建一个指向文件或目录的软链接<br>ln file1 lnk1 创建一个指向文件或目录的物理链接<br>touch -t 0712250000 file1 修改一个文件或目录的时间戳 - (YYMMDDhhmm)<br>file file1 outputs the mime type of the file as text<br>iconv -l 列出已知的编码<br>iconv -f fromEncoding -t toEncoding inputFile &gt; outputFile creates a new from the given input file by assuming it is encoded in fromEncoding and converting it to toEncoding.<br>find . -maxdepth 1 -name *.jpg -print -exec convert “{}” -resize 80x60 “thumbs/{}” ; batch resize files in the current directory and send them to a thumbnails directory (requires convert from Imagemagick)   </p>
+<h2 id="文件搜索"><a href="#文件搜索" class="headerlink" title="文件搜索"></a>文件搜索</h2><p>find / -name file1 从 ‘/‘ 开始进入根文件系统搜索文件和目录<br>find / -user user1 搜索属于用户 ‘user1’ 的文件和目录<br>find /home/user1 -name *.bin 在目录 ‘/ home/user1’ 中搜索带有’.bin’ 结尾的文件<br>find /usr/bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件<br>find /usr/bin -type f -mtime -10 搜索在10天内被创建或者修改过的文件<br>find / -name *.rpm -exec chmod 755 ‘{}’ ; 搜索以 ‘.rpm’ 结尾的文件并定义其权限<br>find / -xdev -name *.rpm 搜索以 ‘.rpm’ 结尾的文件，忽略光驱、捷盘等可移动设备<br>locate *.ps 寻找以 ‘.ps’ 结尾的文件 - 先运行 ‘updatedb’ 命令<br>whereis halt 显示一个二进制文件、源码或man的位置<br>which halt 显示一个二进制文件或可执行文件的完整路径 </p>
+<h2 id="磁盘空间"><a href="#磁盘空间" class="headerlink" title="磁盘空间"></a>磁盘空间</h2><p>df -h 显示已经挂载的分区列表<br>ls -lSr |more 以尺寸大小排列文件和目录<br>du -sh dir1 估算目录 ‘dir1’ 已经使用的磁盘空间’<br>du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小<br>rpm -q -a –qf ‘%10{SIZE}t%{NAME}n’ | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统)<br>dpkg-query -W -f=’${Installed-Size;10}t${Package}n’ | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统) </p>
+<h2 id="打包和压缩文件"><a href="#打包和压缩文件" class="headerlink" title="打包和压缩文件"></a>打包和压缩文件</h2><p>bunzip2 file1.bz2 解压一个叫做 ‘file1.bz2’的文件<br>bzip2 file1 压缩一个叫做 ‘file1’ 的文件<br>gunzip file1.gz 解压一个叫做 ‘file1.gz’的文件<br>gzip file1 压缩一个叫做 ‘file1’的文件<br>gzip -9 file1 最大程度压缩<br>rar a file1.rar test_file 创建一个叫做 ‘file1.rar’ 的包<br>rar a file1.rar file1 file2 dir1 同时压缩 ‘file1’, ‘file2’ 以及目录 ‘dir1’<br>rar x file1.rar 解压rar包<br>unrar x file1.rar 解压rar包<br>tar -cvf archive.tar file1 创建一个非压缩的 tarball<br>tar -cvf archive.tar file1 file2 dir1 创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件<br>tar -tf archive.tar 显示一个包中的内容<br>tar -xvf archive.tar 释放一个包<br>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下<br>tar -cvfj archive.tar.bz2 dir1 创建一个bzip2格式的压缩包<br>tar -xvfj archive.tar.bz2 解压一个bzip2格式的压缩包<br>tar -cvfz archive.tar.gz dir1 创建一个gzip格式的压缩包<br>tar -xvfz archive.tar.gz 解压一个gzip格式的压缩包<br>zip file1.zip file1 创建一个zip格式的压缩包<br>zip -r file1.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包<br>unzip file1.zip 解压一个zip格式压缩包 </p>
+<h2 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h2><p>cat file1 从第一个字节开始正向查看文件的内容<br>tac file1 从最后一行开始反向查看一个文件的内容<br>more file1 查看一个长文件的内容<br>less file1 类似于 ‘more’ 命令，但是它允许在文件中和正向操作一样的反向操作<br>head -2 file1 查看一个文件的前两行<br>tail -2 file1 查看一个文件的最后两行<br>tail -f /var/log/messages 实时查看被添加到一个文件中的内容 </p>
+<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><p>cat file1 file2 … | command &lt;&gt; file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT<br>cat file1 | command( sed, grep, awk, grep, etc…) &gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中<br>cat file1 | command( sed, grep, awk, grep, etc…) &gt;&gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中<br>grep Aug /var/log/messages 在文件 ‘/var/log/messages’中查找关键词”Aug”<br>grep ^Aug /var/log/messages 在文件 ‘/var/log/messages’中查找以”Aug”开始的词汇<br>grep [0-9] /var/log/messages 选择 ‘/var/log/messages’ 文件中所有包含数字的行<br>grep Aug -R /var/log/* 在目录 ‘/var/log’ 及随后的目录中搜索字符串”Aug”<br>sed ‘s/stringa1/stringa2/g’ example.txt 将example.txt文件中的 “string1” 替换成 “string2”<br>sed ‘/^$/d’ example.txt 从example.txt文件中删除所有空白行<br>sed ‘/ *#/d; /^$/d’ example.txt 从example.txt文件中删除所有注释和空白行<br>echo ‘esempio’ | tr ‘[:lower:]’ ‘[:upper:]’ 合并上下单元格内容<br>sed -e ‘1d’ result.txt 从文件example.txt 中排除第一行<br>sed -n ‘/stringa1/p’ 查看只包含词汇 “string1”的行<br>sed -e ‘s/ <em>$//‘ example.txt 删除每一行最后的空白字符<br>sed -e ‘s/stringa1//g’ example.txt 从文档中只删除词汇 “string1” 并保留剩余全部<br>sed -n ‘1,5p;5q’ example.txt 查看从第一行到第5行内容<br>sed -n ‘5p;5q’ example.txt 查看第5行<br>sed -e ‘s/00</em>/0/g’ example.txt 用单个零替换多个零<br>cat -n file1 标示文件的行数<br>cat example.txt | awk ‘NR%2==1’ 删除example.txt文件中的所有偶数行<br>echo a b c | awk ‘{print $1}’ 查看一行第一栏<br>echo a b c | awk ‘{print $1,$3}’ 查看一行的第一和第三栏<br>paste file1 file2 合并两个文件或两栏的内容<br>paste -d ‘+’ file1 file2 合并两个文件或两栏的内容，中间用”+”区分<br>sort file1 file2 排序两个文件的内容<br>sort file1 file2 | uniq 取出两个文件的并集(重复的行只保留一份)<br>sort file1 file2 | uniq -u 删除交集，留下其他的行<br>sort file1 file2 | uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件)<br>comm -1 file1 file2 比较两个文件的内容只删除 ‘file1’ 所包含的内容<br>comm -2 file1 file2 比较两个文件的内容只删除 ‘file2’ 所包含的内容<br>comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/03/linux%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%93%8D%E4%BD%9C/" data-id="cks2wselo0008cws52gqyfiql" data-title="linux文件路径操作" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/08/%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          发布-订阅模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/03/typescript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">typescript</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/react/" style="font-size: 20px;">react</a> <a href="/tags/typescript/" style="font-size: 10px;">typescript</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/08/02/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/">javascript 原型链</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/02/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/08/%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/">发布-订阅模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/03/linux%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%93%8D%E4%BD%9C/">linux文件路径操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/03/typescript/">typescript</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
