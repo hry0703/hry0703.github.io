@@ -1,7 +1,7 @@
 ---
 title: reactAPI
 date: 2020-05-03 11:14:37
-categories:  
+categories: react
 tags: react
 ---
 ## memo
@@ -20,6 +20,9 @@ memo 用来对**函数**组件进行缓存，父组件传的props未改变时，
   }
   export default React.memo(MyComponent, areEqual);
 ```
+
+<!-- more -->
+
 举个例子：
 ```javascript
 // 点击Re-render不会引起ReactMemo组件的重新渲染

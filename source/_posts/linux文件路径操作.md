@@ -1,11 +1,13 @@
 ---
 title: linux文件路径操作
 date: 2020-05-03 11:23:25
-categories:
+categories: linux
 tags: linux
 ---
 
 # Linux 常用命令
+
+<!-- more -->
 
 ## 系统信息 
 arch 显示机器的处理器架构(1) 
