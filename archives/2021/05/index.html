@@ -6,21 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>浏览器EventLoop | Hexo</title>
+  <title>Archives: 2021/5 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="浏览器的事件环  进程：计算机分配任务的 和调度的任务最小单位， 浏览器是一个多进程模型， 每个页卡都是一个独立的进程 （更稳定） 线程 ：  常见的线程有哪些  (JS是单线程的？主线程是单线程的)  GUI渲染 页面渲染，绘图、绘制 3d动画  js渲染引擎： 执行js代码  当js执行时 渲染线程会挂起  -》 渲染时不能执行js  事件触发线程 EventLoop  webApi 也会创建">
-<meta property="og:type" content="article">
-<meta property="og:title" content="浏览器EventLoop">
-<meta property="og:url" content="http://example.com/2021/08/15/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/archives/2021/05/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="浏览器的事件环  进程：计算机分配任务的 和调度的任务最小单位， 浏览器是一个多进程模型， 每个页卡都是一个独立的进程 （更稳定） 线程 ：  常见的线程有哪些  (JS是单线程的？主线程是单线程的)  GUI渲染 页面渲染，绘图、绘制 3d动画  js渲染引擎： 执行js代码  当js执行时 渲染线程会挂起  -》 渲染时不能执行js  事件触发线程 EventLoop  webApi 也会创建">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/eventloop.png">
-<meta property="article:published_time" content="2021-08-15T10:48:44.000Z">
-<meta property="article:modified_time" content="2021-08-15T11:02:40.316Z">
 <meta property="article:author" content="HRY">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/eventloop.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -152,110 +146,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-浏览器EventLoop" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      浏览器EventLoop
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/21/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/" class="archive-article-date">
+  	<time datetime="2021-05-21T11:48:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-21</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/21/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/">浏览器EventLoop</a>
     </h1>
   
 
-        
-        <a href="/2021/08/15/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/" class="archive-article-date">
-  	<time datetime="2021-08-15T10:48:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="浏览器的事件环"><a href="#浏览器的事件环" class="headerlink" title="浏览器的事件环"></a>浏览器的事件环</h3><p>  <strong>进程</strong>：计算机分配任务的 和调度的任务最小单位， 浏览器是一个多进程模型， 每个页卡都是一个独立的进程 （更稳定）</p>
-<p><strong>线程</strong> ：  常见的线程有哪些  (JS是单线程的？主线程是单线程的)<br>  GUI渲染 页面渲染，绘图、绘制 3d动画<br>  js渲染引擎： 执行js代码  当js执行时 渲染线程会挂起  -》 渲染时不能执行js<br>  事件触发线程 EventLoop<br>  webApi 也会创建线程 事件、定时器、ajax请求都会创造一个线程</p>
-<p><strong>宏任务</strong><br>&lt;执行脚本 script&gt; UI / setTimeout / setInterval / setImmediate /  事件 ajax  / MessageChannel  (I/O)</p>
-<p><strong>微任务</strong><br>promise，MutationObserer,object.observe  (process.nextTick)  queueMircotask</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;promise1&#x27;</span>)</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;promise2&#x27;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;setimeout&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+        <div class="article-info info-on-right">
+          
+          
 
-<h4 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h4><p><img src="/images/eventloop.png" alt="执行过程示意图"></p>
-<ol>
-<li>先执行script脚本，将宏任务和微任务进行分类，如果调用的是浏览器api ，浏览器会开一个线程，等时间到了，会自动的放入到宏任务队列中,微任务是直接放到微任务队列中的</li>
-<li>js执行完毕后，会清空所有的微任务，如果微任务在产生微任务，会放到当前微任务队列的尾部</li>
-<li>如果页面需要渲染，则会执行渲染流程</li>
-</ol>
-<p> 事件触发线程会不停的扫描宏任务队列，如果宏任务队列中有对应的回调，会取出来执行一个，继续执行上述过程<br> 宏任务每次调用一个，微任务是请空所有</p>
-<p> 微任务队列每次执行宏任务 都会创造一个新的队列，宏任务队列只有一个</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
   
   
-    <a href="/2021/04/15/promise%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">promise实现</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%8E%AF"><span class="toc-number">1.</span> <span class="toc-text">浏览器的事件环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">执行过程</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -278,8 +211,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

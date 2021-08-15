@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/8 | Hexo</title>
+  <title>浏览器EventLoop | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2021/08/index.html">
+  <meta name="description" content="浏览器的事件环进程计算机分配任务的 和调度的任务最小单位， 浏览器是一个多进程模型， 每个页卡都是一个独立的进程 （更稳定） 线程线程是 CPU调度的最小单位一个进程可以包括多个线程，这些线程共享这个进程的资源 chrome浏览器进程 浏览器是多进程的 每一个TAB页就是一个进程 浏览器主进程 控制其它子进程的创建和销毁 浏览器界面显示，比如用户交互、前进、后退等操作 将渲染的内容绘制到用户界面上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器EventLoop">
+<meta property="og:url" content="http://example.com/2021/05/21/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="浏览器的事件环进程计算机分配任务的 和调度的任务最小单位， 浏览器是一个多进程模型， 每个页卡都是一个独立的进程 （更稳定） 线程线程是 CPU调度的最小单位一个进程可以包括多个线程，这些线程共享这个进程的资源 chrome浏览器进程 浏览器是多进程的 每一个TAB页就是一个进程 浏览器主进程 控制其它子进程的创建和销毁 浏览器界面显示，比如用户交互、前进、后退等操作 将渲染的内容绘制到用户界面上">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/eventloop.png">
+<meta property="article:published_time" content="2021-05-21T11:48:44.000Z">
+<meta property="article:modified_time" content="2021-08-15T11:27:33.466Z">
 <meta property="article:author" content="HRY">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/eventloop.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -146,49 +152,156 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-浏览器EventLoop" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/15/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/" class="archive-article-date">
-  	<time datetime="2021-08-15T10:48:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/15/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/">浏览器EventLoop</a>
+    <h1 class="article-title" itemprop="name">
+      浏览器EventLoop
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2021/05/21/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/" class="archive-article-date">
+  	<time datetime="2021-05-21T11:48:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="浏览器的事件环"><a href="#浏览器的事件环" class="headerlink" title="浏览器的事件环"></a>浏览器的事件环</h3><h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><p>计算机分配任务的 和调度的任务最小单位， 浏览器是一个多进程模型， 每个页卡都是一个独立的进程 （更稳定）</p>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><p>线程是 CPU调度的最小单位<br>一个进程可以包括多个线程，这些线程共享这个进程的资源</p>
+<h4 id="chrome浏览器进程"><a href="#chrome浏览器进程" class="headerlink" title="chrome浏览器进程"></a>chrome浏览器进程</h4><ul>
+<li>浏览器是多进程的</li>
+<li>每一个TAB页就是一个进程</li>
+<li>浏览器主进程<ul>
+<li>控制其它子进程的创建和销毁</li>
+<li>浏览器界面显示，比如用户交互、前进、后退等操作</li>
+<li>将渲染的内容绘制到用户界面上</li>
+</ul>
+</li>
+<li>渲染进程就是我们说的浏览器内核<ul>
+<li>负责页面的渲染、脚本执行、事件处理</li>
+<li>每个TAB页都有一个渲染进程</li>
+</ul>
+</li>
+<li>网络进程 处理网络请求、文件访问等操作</li>
+<li>GPU进程 用于3D绘制</li>
+<li>第三方插件进程</li>
+</ul>
+<h4 id="渲染进程"><a href="#渲染进程" class="headerlink" title="渲染进程"></a>渲染进程</h4><ul>
+<li>GUI渲染线程<ul>
+<li>渲染、布局和绘制页面</li>
+<li>当页面需要重绘和回流时，此线程就会执行</li>
+<li>与JS引擎互斥</li>
+</ul>
+</li>
+<li>JS引擎线程<ul>
+<li>负责解析执行JS脚本</li>
+<li>只有一个JS引擎线程(单线程)</li>
+<li>与GUI渲染线程互斥</li>
+</ul>
+</li>
+<li>事件触发线程<ul>
+<li>用来控制事件循环(鼠标点击、setTimeout、Ajax等)</li>
+<li>当事件满足触发条件时，把事件放入到JS引擎所有的执行队列中</li>
+</ul>
+</li>
+<li>定时器触发线程<ul>
+<li>setInterval和setTimeout所在线程</li>
+<li>定时任务并不是由JS引擎计时，而是由定时触发线程来计时的</li>
+<li>计时完毕后会通知事件触发线程</li>
+</ul>
+</li>
+<li>异步HTTP请求线程<ul>
+<li>浏览器有一个单独的线程处理AJAX请求</li>
+<li>当请求完毕后，如果有回调函数，会通知事件触发线程</li>
+</ul>
+</li>
+</ul>
+<h4 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h4><p><img src="/images/eventloop.png" alt="执行过程示意图"></p>
+<ol>
+<li>先执行script脚本，将宏任务和微任务进行分类，如果调用的是浏览器api ，浏览器会开一个线程，等时间到了，会自动的放入到宏任务队列中,微任务是直接放到微任务队列中的</li>
+<li>js执行完毕后，会清空所有的微任务，如果微任务在产生微任务，会放到当前微任务队列的尾部</li>
+<li>如果页面需要渲染，则会执行渲染流程</li>
+</ol>
+<p> 事件触发线程会不停的扫描宏任务队列，如果宏任务队列中有对应的回调，会取出来执行一个，继续执行上述过程<br> 宏任务每次调用一个，微任务是请空所有</p>
+<p> 微任务队列每次执行宏任务 都会创造一个新的队列，宏任务队列只有一个</p>
+<p> <strong>宏任务</strong><br>&lt;执行脚本 script&gt; UI / setTimeout / setInterval / setImmediate /  事件 ajax  / MessageChannel  (I/O)</p>
+<p><strong>微任务</strong><br>promise，MutationObserer,object.observe  (process.nextTick)  queueMircotask</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;promise1&#x27;</span>)</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;promise2&#x27;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;setimeout&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/04/15/promise%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">promise实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%8E%AF"><span class="toc-number">1.</span> <span class="toc-text">浏览器的事件环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">chrome浏览器进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">渲染进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">执行过程</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -211,8 +324,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
