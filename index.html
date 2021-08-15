@@ -148,6 +148,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-浏览器EventLoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/15/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/">浏览器EventLoop</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/15/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/" class="archive-article-date">
+  	<time datetime="2021-08-15T10:48:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="浏览器的事件环"><a href="#浏览器的事件环" class="headerlink" title="浏览器的事件环"></a>浏览器的事件环</h3><p>  <strong>进程</strong>：计算机分配任务的 和调度的任务最小单位， 浏览器是一个多进程模型， 每个页卡都是一个独立的进程 （更稳定）</p>
+<p><strong>线程</strong> ：  常见的线程有哪些  (JS是单线程的？主线程是单线程的)<br>  GUI渲染 页面渲染，绘图、绘制 3d动画<br>  js渲染引擎： 执行js代码  当js执行时 渲染线程会挂起  -》 渲染时不能执行js<br>  事件触发线程 EventLoop<br>  webApi 也会创建线程 事件、定时器、ajax请求都会创造一个线程</p>
+<p><strong>宏任务</strong><br>&lt;执行脚本 script&gt; UI / setTimeout / setInterval / setImmediate /  事件 ajax  / MessageChannel  (I/O)</p>
+<p><strong>微任务</strong><br>promise，MutationObserer,object.observe  (process.nextTick)  queueMircotask</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;promise1&#x27;</span>)</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;promise2&#x27;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;setimeout&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h4><p><img src="/images/eventloop.png" alt="执行过程示意图"></p>
+<ol>
+<li>先执行script脚本，将宏任务和微任务进行分类，如果调用的是浏览器api ，浏览器会开一个线程，等时间到了，会自动的放入到宏任务队列中,微任务是直接放到微任务队列中的</li>
+<li>js执行完毕后，会清空所有的微任务，如果微任务在产生微任务，会放到当前微任务队列的尾部</li>
+<li>如果页面需要渲染，则会执行渲染流程</li>
+</ol>
+<p> 事件触发线程会不停的扫描宏任务队列，如果宏任务队列中有对应的回调，会取出来执行一个，继续执行上述过程<br> 宏任务每次调用一个，微任务是请空所有</p>
+<p> 微任务队列每次执行宏任务 都会创造一个新的队列，宏任务队列只有一个</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/15/%E6%B5%8F%E8%A7%88%E5%99%A8EventLoop/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="w-promise实现" class="article article-type-w  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
