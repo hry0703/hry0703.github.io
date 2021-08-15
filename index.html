@@ -46,8 +46,10 @@
 			<img src="/images/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">HRY</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">HRY的博客</p>
 		
 
 		<nav class="header-menu">
@@ -96,8 +98,10 @@
 				<img src="/images/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">HRY</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>HRY的博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -143,6 +147,187 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="w-promise实现" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/15/promise%E5%AE%9E%E7%8E%B0/">promise实现</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/15/promise%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2021-04-15T09:03:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="promise实现"><a href="#promise实现" class="headerlink" title="promise实现"></a>promise实现</h2><h3 id="promise标准"><a href="#promise标准" class="headerlink" title="promise标准"></a>promise标准</h3><p><a target="_blank" rel="noopener" href="https://promisesaplus.com/">promiseA+规范</a></p>
+<p>Promise表示一个异步操作的最终结果。与Promise最主要的交互方法是通过将函数传入它的then方法从而获取得Promise最终的值或Promise最终拒绝（reject）的原因。</p>
+<h4 id="1-术语"><a href="#1-术语" class="headerlink" title="1. 术语"></a>1. 术语</h4><pre><code>promise是一个包含了兼容promise规范then方法的对象或函数，
+thenable 是一个包含了then方法的对象或函数。
+value 是任何Javascript值。 (包括 undefined, thenable, promise等).
+exception 是由throw表达式抛出来的值。
+reason 是一个用于描述Promise被拒绝原因的值。
+</code></pre>
+<h4 id="2-要求"><a href="#2-要求" class="headerlink" title="2. 要求"></a>2. 要求</h4><ol>
+<li>Promise状态:<ul>
+<li>一个Promise必须处在其中之一的状态：pending, fulfilled 或 rejected.</li>
+<li>如果是pending状态,则promise：<br>   可以转换到fulfilled或rejected状态。</li>
+<li>如果是fulfilled状态,则promise：<ul>
+<li>不能转换成任何其它状态。</li>
+<li>必须有一个值，且这个值不能被改变。</li>
+</ul>
+</li>
+<li>如果是rejected状态,则promise：<ul>
+<li>不能转换成任何其它状态。</li>
+<li>必须有一个原因，且这个值不能被改变。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-then方法"><a href="#3-then方法" class="headerlink" title="3. then方法"></a>3. then方法</h4><p>一个Promise必须提供一个then方法来获取其值或原因。<br>Promise的then方法接受两个参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onFulfilled, onRejected)</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数可选</strong><br>onFulfilled 和 onRejected 都是可选参数。</p>
+<ul>
+<li><p>如果 onFulfilled 不是函数，其必须被忽略</p>
+</li>
+<li><p>如果 onRejected 不是函数，其必须被忽略</p>
+</li>
+<li><p><em>onFulfilled 特性</em>*<br>如果 onFulfilled 是函数：</p>
+</li>
+<li><p>当 promise 执行结束后其必须被调用，其第一个参数为 promise 的终值</p>
+</li>
+<li><p>在 promise 执行结束前其不可被调用</p>
+</li>
+<li><p>其调用次数不可超过一次</p>
+</li>
+</ul>
+<p><strong>onRejected 特性</strong><br>如果 onRejected 是函数：</p>
+<ul>
+<li>当 promise 被拒绝执行后其必须被调用，其第一个参数为 promise 的据因</li>
+<li>在 promise 被拒绝执行前其不可被调用</li>
+<li>其调用次数不可超过一次</li>
+</ul>
+<p><strong>多次调用</strong><br>then 方法可以被同一个 promise 调用多次</p>
+<ul>
+<li>当 promise 成功执行时，所有 onFulfilled 需按照其注册顺序依次回调</li>
+<li>当 promise 成功执行时，所有 onFulfilled 需按照其注册顺序依次回调</li>
+</ul>
+<p><strong>返回</strong><br>then 方法必须返回一个 promise</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise2 = promise1.then(onFulfilled, onRejected);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果 onFulfilled 或者 onRejected 返回一个值 x ，则运行下面的 Promise 解决过程：Resolve(promise2, x)</li>
+<li>如果 onFulfilled 或者 onRejected 抛出一个异常 e ，则 promise2 必须拒绝执行，并返回拒因 e</li>
+<li>如果 onFulfilled 不是函数且 promise1 成功执行， promise2 必须成功执行并返回相同的值</li>
+<li>如果 onRejected 不是函数且 promise1 拒绝执行， promise2 必须拒绝执行并返回相同的据因</li>
+</ul>
+<h4 id="4-Promise解决过程"><a href="#4-Promise解决过程" class="headerlink" title="4. Promise解决过程"></a>4. Promise解决过程</h4><p>Promise 解决过程是一个抽象的操作，其需输入一个 promise 和一个值，我们表示为 [[Resolve]](promise, x)，如果 x 有 then 方法且看上去像一个 Promise ，解决程序即尝试使 promise 接受 x 的状态；否则其用 x 的值来执行 promise 。</p>
+<p>这种 thenable 的特性使得 Promise 的实现更具有通用性：只要其暴露出一个遵循 Promise/A+ 协议的 then 方法即可；这同时也使遵循 Promise/A+ 规范的实现可以与那些不太规范但可用的实现能良好共存。</p>
+<p>运行 [[Resolve]](promise, x) 需遵循以下步骤：</p>
+<h5 id="x-与-promise-相等"><a href="#x-与-promise-相等" class="headerlink" title="x 与 promise 相等"></a>x 与 promise 相等</h5><ul>
+<li>如果 promise 和 x 指向同一对象，以 TypeError 为据因拒绝执行 promise</li>
+</ul>
+<h5 id="x-为-Promise"><a href="#x-为-Promise" class="headerlink" title="x 为 Promise"></a>x 为 Promise</h5><ul>
+<li><p>如果 x 为 Promise ，则使 promise 接受 x 的状态：</p>
+</li>
+<li><p>如果 x 处于等待态， promise 需保持为等待态直至 x 被执行或拒绝</p>
+</li>
+<li><p>如果 x 处于执行态，用相同的值执行 promise</p>
+</li>
+<li><p>如果 x 处于拒绝态，用相同的据因拒绝 promise</p>
+</li>
+</ul>
+<h5 id="x-为对象或函数"><a href="#x-为对象或函数" class="headerlink" title="x 为对象或函数"></a>x 为对象或函数</h5><p>如果 x 为对象或者函数：</p>
+<ul>
+<li>把 x.then 赋值给 then</li>
+<li>如果取 x.then 的值时抛出错误 e ，则以 e 为据因拒绝 promise</li>
+<li>如果 then 是函数，将 x 作为函数的作用域 this 调用之。传递两个回调函数作为参数，第一个参数叫做 resolvePromise ，第二个参数叫做 rejectPromise:<ul>
+<li>如果 resolvePromise 以值 y 为参数被调用，则运行 [[Resolve]](promise, y)</li>
+<li>如果 rejectPromise 以据因 r 为参数被调用，则以据因 r 拒绝 promise</li>
+<li>如果 resolvePromise 和 rejectPromise 均被调用，或者被同一参数调用了多次，则优先采用首次调用并忽略剩下的调用</li>
+<li>如果调用 then 方法抛出了异常 e：<ul>
+<li>如果 resolvePromise 或 rejectPromise 已经被调用，则忽略之</li>
+<li>否则以 e 为据因拒绝 promise</li>
+</ul>
+</li>
+<li>如果 then 不是函数，以 x 为参数执行 promise</li>
+</ul>
+</li>
+<li>如果 x 不为对象或者函数，以 x 为参数执行 promise</li>
+</ul>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">es6</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/15/promise%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-发布-订阅模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -589,6 +774,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
               </li>
             
             <div class="clearfix"></div>

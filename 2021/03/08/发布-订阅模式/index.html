@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/publish-subscribe.png">
 <meta property="article:published_time" content="2021-03-08T07:07:21.000Z">
-<meta property="article:modified_time" content="2021-08-08T09:25:45.822Z">
+<meta property="article:modified_time" content="2021-08-15T10:38:48.123Z">
 <meta property="article:author" content="HRY">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -53,8 +53,10 @@
 			<img src="/images/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">HRY</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">HRY的博客</p>
 		
 
 		<nav class="header-menu">
@@ -103,8 +105,10 @@
 				<img src="/images/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">HRY</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>HRY的博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -175,6 +179,7 @@
 
 <h3 id="2-发布订阅模式与观察者模式的区别"><a href="#2-发布订阅模式与观察者模式的区别" class="headerlink" title="2. 发布订阅模式与观察者模式的区别"></a><strong>2. 发布订阅模式与观察者模式的区别</strong></h3><p>   观察者模式和发布订阅模式最大的区别就是发布订阅模式有个<strong>事件调度中心</strong>。观察者模式由具体目标调度，每个被订阅的目标里面都需要有对观察者的处理，发布订阅模式中统一由调度中心进行处理，订阅者和发布者互不干扰，消除了发布者和订阅者之间的依赖。这样一方面实现了解耦，还有就是可以实现更细粒度的一些控制。比如发布者发布了很多消息，但是不想所有的订阅者都接收到，就可以在调度中心做一些处理，类似于权限控制之类的。还可以做一些节流操作。</p>
 <h3 id="3-发布订阅模式应用-node中Event模块"><a href="#3-发布订阅模式应用-node中Event模块" class="headerlink" title="3. 发布订阅模式应用-node中Event模块"></a><strong>3. 发布订阅模式应用-node中Event模块</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// event.js </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">EventEmitter</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>._events = &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EventEmitter.prototype.on = <span class="function"><span class="keyword">function</span> (<span class="params">eventName, callback</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">this</span>._events) <span class="built_in">this</span>._events = &#123;&#125;</span><br><span class="line">    <span class="keyword">const</span> callbacks = <span class="built_in">this</span>._events[eventName] || [];</span><br><span class="line">    callbacks.push(callback)</span><br><span class="line">    <span class="built_in">this</span>._events[eventName] = callbacks</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EventEmitter.prototype.emit = <span class="function"><span class="keyword">function</span>(<span class="params">eventName, ...args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>._events) <span class="built_in">this</span>._events = &#123;&#125;</span><br><span class="line">    <span class="keyword">let</span> callbacks = <span class="built_in">this</span>._events[eventName];</span><br><span class="line">    callbacks &amp;&amp; callbacks.forEach(<span class="function"><span class="params">fn</span>=&gt;</span>fn(...args))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EventEmitter.prototype.off = <span class="function"><span class="keyword">function</span>(<span class="params">eventName, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">this</span>._events) <span class="built_in">this</span>._events = &#123;&#125;</span><br><span class="line">    <span class="built_in">this</span>._events[eventName] &amp;&amp; <span class="built_in">this</span>._events[eventName].filter(<span class="function"><span class="params">fn</span> =&gt;</span> fn !== callback &amp;&amp; fn.l !== callback)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EventEmitter.prototype.once = <span class="function"><span class="keyword">function</span> (<span class="params">eventName, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> one = <span class="function">(<span class="params">...args</span>)=&gt;</span>&#123;</span><br><span class="line">        callback(...args)</span><br><span class="line">        <span class="built_in">this</span>.off(eventName,one)</span><br><span class="line">    &#125;</span><br><span class="line">    one.l = callback <span class="comment">// 建立与原回调的关联</span></span><br><span class="line">    <span class="built_in">this</span>.on(eventName,one)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = EventEmitter</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体使用</span></span><br><span class="line"><span class="comment">// const EventEmitter = require(&#x27;events&#x27;);</span></span><br><span class="line"><span class="keyword">const</span> EventEmitter = <span class="built_in">require</span>(<span class="string">&#x27;./event&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> events = <span class="keyword">new</span> EventEmitter</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getUp = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name + <span class="string">&#x27;起床了&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">events.on(<span class="string">&#x27;getUp&#x27;</span>, getUp)</span><br><span class="line"></span><br><span class="line">events.emit(<span class="string">&#x27;getUp&#x27;</span>, <span class="string">&#x27;zhangsan&#x27;</span>)</span><br><span class="line">events.off(<span class="string">&#x27;getUp&#x27;</span>, getUp)</span><br><span class="line">events.emit(<span class="string">&#x27;getUp&#x27;</span>, <span class="string">&#x27;zhangsan&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -216,6 +221,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/04/15/promise%E5%AE%9E%E7%8E%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          promise实现
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/03/linux%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
@@ -359,6 +373,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
               </li>
             
             <div class="clearfix"></div>
